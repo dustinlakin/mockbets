@@ -1,0 +1,46 @@
+
+body{
+    font-family: helvetica,arial,sans-serif;
+    font-size: 14px;
+}
+
+div.event{
+    width:600px;
+    border:1px solid black;
+    margin: 10px 0px;
+}
+
+div.event_info{
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+div.over_under{
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+div.team_name{
+    width:100%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+ul.teams{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+li.team{
+    width:290px;
+    display: inline-block;
+    text-align: center;
+}
