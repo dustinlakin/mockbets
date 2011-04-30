@@ -20,6 +20,7 @@ class event {
             $this->get_event($id);
         }
     }
+   
 
     public function get_event($id){
         $sql = "SELECT e.*, s.name as sport

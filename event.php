@@ -20,6 +20,10 @@ function show_group_events($id){
     $id = mysql_real_escape_string($id, get_link());
 
     $events = find_bets_by_group($id);
+    
+    foreach ($events as $id => $e) {
+        $json[$id] = $e->teams;
+    }
 
     require_once 'view/events/show.php';
 }
