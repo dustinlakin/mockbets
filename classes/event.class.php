@@ -16,9 +16,8 @@ class event {
     public $bets;
 
     public function __construct($id=0) {
-        if($id != 0){
+        if($id != 0)
             $this->get_event($id);
-        }
     }
    
 
@@ -109,30 +108,30 @@ class event {
         $id = mysql_insert_id(get_link());
 
         //moneyline
-        if($ml){
+        if($ml):
             $sql = "INSERT INTO money_line VALUES($id,".$arr['team1'].",".$arr['team1_ml'].",0);";
             mysql_query($sql,  get_link());
             $sql = "INSERT INTO money_line VALUES($id,".$arr['team2'].",".$arr['team2_ml'].",0);";
             mysql_query($sql,  get_link());
-        }
+        endif;
 
         //moneyline
-        if($ps){
+        if($ps):
             $sql = "INSERT INTO point_spread VALUES($id,".$arr['team1'].",".$arr['team1_ps'].",0);";
             mysql_query($sql,  get_link());
             $sql = "INSERT INTO point_spread VALUES($id,".$arr['team2'].",".$arr['team2_ps'].",0);";
             mysql_query($sql,  get_link());
-        }
+        endif;
 
         //moneyline
-        if($ou){
+        if($ou):
             //over
             $sql = "INSERT INTO over_under VALUES($id,".$arr['over'].",".$arr['ou_points'].",0);";
             mysql_query($sql,  get_link());
             //under
             $sql = "INSERT INTO over_under VALUES($id,".$arr['under'].",".($arr['ou_points']*-1).",0);";
             mysql_query($sql,  get_link());
-        }
+        endif;
 
     }
 

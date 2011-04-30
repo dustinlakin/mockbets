@@ -39,7 +39,7 @@
         <link href="/mockbets/css/events.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
-        <?  foreach ($events as $e):?>
+        <?foreach ($events as $e):?>
         <div class="event">
             <div class="event_info"><?=$e->name?></div>
             <ul class="teams">
@@ -64,11 +64,13 @@
                     <?
                     if($arr['ps']):
                         if($arr['ps']>0)
-                            $arr['ps'] = "+" . $arr['ps'];
-                        echo $arr['ps'];
-                    endif;
-                    ?>
-
+                            $arr['ps'] = "+" . $arr['ml'];
+                        ?>
+                    <div class="ps" id="ps_<?=$e->id . "_" . $k?>" onclick="select(<?=$e->id?>,<?=$k?>,'ps')">
+                        <?=$arr['ps']?>
+                    </div>
+                    <?
+                    endif;?>
                 </li>
             <?endforeach;?>
             </ul>
