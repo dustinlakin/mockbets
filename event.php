@@ -21,6 +21,7 @@ function show_group_events($id){
 
     $events = find_bets_by_group($id);
     
+    //json events
     foreach ($events as $id => $e) {
         $json[$id] = $e->teams;
     }
