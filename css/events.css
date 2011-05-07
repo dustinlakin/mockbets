@@ -55,7 +55,7 @@ div.bet_helper{
     background-color: #ffc6c6;
 }
 
-input#bet_amount{
+input.bet_amount{
     width:50px;
     height:20px;
     border:1px grey dashed;

@@ -25,7 +25,8 @@ function show_group_events($id){
     foreach ($events as $id => $e) {
         $json[$id] = $e->teams;
     }
-
+    
+    //call view
     require_once 'view/events/show.php';
 }
 
