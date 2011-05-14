@@ -1,10 +1,16 @@
 <?php
-
 //$events which are arrays of events;
 //$json has things that organization for json
 
 
+$title = $group->name ." Bets";
+$scripts = array("jquery","betting");
+$styles = array("css/events.css");
+
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -12,21 +18,7 @@
         <title><?=$group->name?></title>
         
         <script type="text/javascript" src="/mockbets/js/jquery-1.5.2.min.js"></script>
-        <script type="text/javascript">
-            var json = <?=  json_encode($json)?>;
-            var current_bets = new Array();
-            //add events;
-            $(document).ready(function(){
-                $(".bet_amount").keyup(function(){
-                    event = $(this).attr('id');
-                    event = parseInt(event.replace("bet_amount_",""));
-                    if(current_bets && current_bets[event]){
-                        select_bet(current_bets[event].Event,current_bets[event].Team,current_bets[event].Type);
-                    }
-                })
-            });
-            
-        </script>
+        
         <script type="text/javascript" src="/mockbets/js/betting.js"></script>
         
         <link href="/mockbets/css/events.css" type="text/css" rel="stylesheet"/>
@@ -78,5 +70,22 @@
             $ <input type="text" class="bet_amount" id="bet_amount_<?=$e->id?>"/> <span id="bet_<?=$e->id?>"></span>
         </div>
         <?  endforeach;?>
+        
+        <? include_js()?>
+        <script type="text/javascript">
+            var json = <?=  json_encode($json)?>;
+            var current_bets = new Array();
+            //add events;
+            $(document).ready(function(){
+                $(".bet_amount").keyup(function(){
+                    event = $(this).attr('id');
+                    event = parseInt(event.replace("bet_amount_",""));
+                    if(current_bets && current_bets[event]){
+                        select_bet(current_bets[event].Event,current_bets[event].Team,current_bets[event].Type);
+                    }
+                })
+            });
+            
+        </script>
     </body>
 </head>
