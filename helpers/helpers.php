@@ -5,9 +5,8 @@
  * This is a simple way to add some js files through php. $name accepts a single
  * value or an array of values.
  * 
- * Valid includes:
- * jquery
- * 
+ * Valid params include:
+ * jquery, betting
  *  
  * @param array $name array of script titles
  */
@@ -25,7 +24,14 @@ function include_js($name){
     
 }
 
-
+/**
+ *
+ * Sets up styles for you, create an array of locations. 
+ * No real complicated stuff allowed just yet.
+ * 
+ * @param array $styles
+ * @return boolean
+ */
 function include_style($styles){
     if(!isset($styles))
         return false;
@@ -39,6 +45,51 @@ function include_style($styles){
         echo sprintf($template,$s);
     }
     return true;
+}
+
+/**
+ * Redirect to a url
+ * 
+ * @param string $url
+ */
+
+function redirect_to_url($url){
+    header("location:".$url);
+}
+
+/**
+ * 
+ * Sends to controller, action and id
+ *
+ * @param array $array 
+ */
+
+function redirect_to($array){
+    $url = $array["controller"] . ".php";
+    if($array["action"]){
+        $url .= "?action=".$array["action"];
+        if($array["id"]){
+            $url .= "&id=".$array["id"];
+        }
+    }
+    header("location:".$url);
+}
+
+
+/**
+ *
+ * gets links from controller, action and id
+ * 
+ * @param array $array 
+ */
+function link_to($array){
+    $url = $array["controller"] . ".php";
+    if($array["action"]){
+        $url .= "?action=".$array["action"];
+        if($array["id"]){
+            $url .= "&id=".$array["id"];
+        }
+    }
 }
 
 ?>

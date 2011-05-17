@@ -31,7 +31,7 @@ if($g->save()){
 //$u = new user(3);
 //print_r($u);
 
-$g = new group(5);
+//$g = new group(5);
 //$g->remove_sport(2);
 //$g->add_sport(2);
 //$g->find_users();
@@ -44,7 +44,12 @@ $g = new group(5);
 
 
 //$u = new user($_SESSION['user']);
-//$u = new user();
+$u = new user();
+$u->get_user(4);
+//print_r($u);
+//$u->set_password("test");
+//$u->save();
+echo $u->check_login("dustin", "test");
 //echo $u->check_login("jacob", "lol");
 //print_r($u);
 //$u->get_user($u->check_login("dustin", "test"));

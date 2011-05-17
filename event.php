@@ -6,6 +6,7 @@ require_once 'classes/user.class.php';
 require_once 'classes/group.class.php';
 require_once 'classes/standings.class.php';
 require_once 'classes/event.class.php';
+require_once 'helpers/helpers.php';
 
 switch ($_GET['action']) {
     case "group":
@@ -20,8 +21,9 @@ function show_group_events($id){
     $id = mysql_real_escape_string($id, get_link());
 
     $events = find_bets_by_group($id);
+    $group = new group($id);
     
-    //json events
+    //json events for DOM data
     foreach ($events as $id => $e) {
         $json[$id] = $e->teams;
     }
@@ -29,6 +31,4 @@ function show_group_events($id){
     //call view
     require_once 'view/events/show.php';
 }
-
-
 ?>

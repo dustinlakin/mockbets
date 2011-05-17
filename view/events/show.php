@@ -7,23 +7,8 @@ $title = $group->name ." Bets";
 $scripts = array("jquery","betting");
 $styles = array("css/events.css");
 
+require_once 'view/heading.php';
 ?>
-
-
-
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title><?=$group->name?></title>
-        
-        <script type="text/javascript" src="/mockbets/js/jquery-1.5.2.min.js"></script>
-        
-        <script type="text/javascript" src="/mockbets/js/betting.js"></script>
-        
-        <link href="/mockbets/css/events.css" type="text/css" rel="stylesheet"/>
-    </head>
-    <body>
         <?foreach ($events as $e):?>
         <div class="event">
             <div class="event_info"><?=$e->name?></div>
@@ -33,45 +18,52 @@ $styles = array("css/events.css");
                     <div class="team_name">
                         <?=$arr['name']?><?=($arr['city'] ? " (".$arr['city'].")": "")?><br/>
                     </div>
-                    <?
-                    if($arr['ml']):
+                    
+                    <!-- moneyline -->
+                    <?if($arr['ml']):
                         if($arr['ml']>0)
-                            $arr['ml'] = "+" . $arr['ml'];
-                        ?>
+                            $arr['ml'] = "+" . $arr['ml'];?>
                     <div class="ml" id="ml_<?=$e->id . "_" . $k?>" onclick="select_bet(<?=$e->id?>,<?=$k?>,'ml')">
                         <?=$arr['ml']?>
                     </div>
-                    <?
-                    endif;
-                    ?>
+                    <?endif;?>
+                    <!-- end moneyline -->
                     
+                    
+                    <!-- start point spread -->
                     <br/>
-                    <?
-                    if($arr['ps']):
+                    <?if($arr['ps']):
                         if($arr['ps']>0)
-                            $arr['ps'] = "+" . $arr['ps'];
-                        ?>
+                            $arr['ps'] = "+" . $arr['ps'];?>
                     <div class="ps" id="ps_<?=$e->id . "_" . $k?>" onclick="select_bet(<?=$e->id?>,<?=$k?>,'ps')">
                         <?=$arr['ps']?>
                     </div>
-                    <?
-                    endif;?>
+                    <?endif;?>
+                    <!-- end point spread -->
+                    
                 </li>
             <?endforeach;?>
             </ul>
+            
+            <!-- over-under options -->
             <?if($e->over_under):?>
             <div class="over_under">
                 Over <?=$e->over_under['points']?>(<?=$e->over_under['over']?>) 
                 Under <?=$e->over_under['points']?>(<?=$e->over_under['under']?>)
             </div>
             <?endif;?>
+            <!-- end over-under -->
+            
         </div>
+
+        <!-- bet helpers -->
         <div id="bet_helper_<?=$e->id?>" class="bet_helper">
             $ <input type="text" class="bet_amount" id="bet_amount_<?=$e->id?>"/> <span id="bet_<?=$e->id?>"></span>
         </div>
-        <?  endforeach;?>
+        <!-- end bet helper -->
+        <?endforeach;?>
         
-        <? include_js()?>
+        <? include_js($scripts)?>
         <script type="text/javascript">
             var json = <?=  json_encode($json)?>;
             var current_bets = new Array();
@@ -87,5 +79,4 @@ $styles = array("css/events.css");
             });
             
         </script>
-    </body>
-</head>
+<?require_once 'view/footer.php';?>
